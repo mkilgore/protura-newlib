@@ -560,6 +560,9 @@ case "${host}" in
   z8k-*-coff)
 	sys_dir=z8ksim
 	;;
+  i[3-7]86-*-protura*)
+    sys_dir=protura
+    ;;
 esac
 
 # Host specific flag settings -- usually for features that are not
