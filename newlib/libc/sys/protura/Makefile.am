@@ -1,12 +1,7 @@
 
 AUTOMAKE_OPTIONS = cygnus
 
-# We're presumably not compiling this on a Protura system with a configured
-# gcc (Since that's currently impossible), so we have to specify the include
-# directory for the Protura headers by hand.
-protura_include = -I$(srcdir)/../../../../../../../include -I$(srcdir)/../../../../../../../arch/x86/include
-
-INCLUDES = -I$(srcdir)/include $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS) $(protura_include)
+INCLUDES = -I$(srcdir)/include $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS)
 AM_CCASFLAGS = $(INCLUDES)
 
 noinst_LIBRARIES = lib.a
@@ -24,9 +19,6 @@ extra_sources =
 endif
 
 lib_a_SOURCES = $(extra_sources) crt0.S
-lib_a_LIBADD =
-# EXTRA_lib_a_SOURCES = $(extra_objs) crt0.S
-lib_a_DEPENDENCIES =
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
 lib_a_CFLAGS = $(AM_CFLAGS)
 
