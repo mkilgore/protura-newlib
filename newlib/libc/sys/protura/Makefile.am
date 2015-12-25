@@ -11,6 +11,8 @@ if MAY_SUPPLY_SYSCALLS
 extra_sources = \
 	read.c \
 	write.c \
+	open.c \
+	close.c \
 	execve.c \
 	_exit.c
 

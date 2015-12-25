@@ -5,10 +5,10 @@
 #include <stdint.h>
 #include <unistd.h>
 
-int execve(const char *filename, char *const argv[], char *const envp[])
+int open(const char *file, int flags, mode_t mode)
 {
     int ret;
-    ret = syscall3(SYSCALL_EXECVE, (uint32_t)filename, (uint32_t)argv, (uint32_t)envp);
+    ret = syscall3(SYSCALL_OPEN, (uint32_t)file, (uint32_t)flags, (uint32_t)mode);
     if (ret < 0) {
         errno = -ret;
         return -1;
