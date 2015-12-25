@@ -67,8 +67,11 @@ CONFIG_CLEAN_VPATH_FILES =
 LIBRARIES = $(noinst_LIBRARIES)
 ARFLAGS = cru
 lib_a_AR = $(AR) $(ARFLAGS)
+lib_a_LIBADD =
 @MAY_SUPPLY_SYSCALLS_TRUE@am__objects_1 = lib_a-read.$(OBJEXT) \
 @MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-write.$(OBJEXT) \
+@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-open.$(OBJEXT) \
+@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-close.$(OBJEXT) \
 @MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-execve.$(OBJEXT) \
 @MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-_exit.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1) lib_a-crt0.$(OBJEXT)
@@ -196,25 +199,19 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = cygnus
-
-# We're presumably not compiling this on a Protura system with a configured
-# gcc (Since that's currently impossible), so we have to specify the include
-# directory for the Protura headers by hand.
-protura_include = -I$(srcdir)/../../../../../../../include -I$(srcdir)/../../../../../../../arch/x86/include
-INCLUDES = -I$(srcdir)/include $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS) $(protura_include)
+INCLUDES = -I$(srcdir)/include $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS)
 AM_CCASFLAGS = $(INCLUDES)
 noinst_LIBRARIES = lib.a
 @MAY_SUPPLY_SYSCALLS_FALSE@extra_sources = 
 @MAY_SUPPLY_SYSCALLS_TRUE@extra_sources = \
 @MAY_SUPPLY_SYSCALLS_TRUE@	read.c \
 @MAY_SUPPLY_SYSCALLS_TRUE@	write.c \
+@MAY_SUPPLY_SYSCALLS_TRUE@	open.c \
+@MAY_SUPPLY_SYSCALLS_TRUE@	close.c \
 @MAY_SUPPLY_SYSCALLS_TRUE@	execve.c \
 @MAY_SUPPLY_SYSCALLS_TRUE@	_exit.c
 
 lib_a_SOURCES = $(extra_sources) crt0.S
-lib_a_LIBADD = 
-# EXTRA_lib_a_SOURCES = $(extra_objs) crt0.S
-lib_a_DEPENDENCIES = 
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
 lib_a_CFLAGS = $(AM_CFLAGS)
 ACLOCAL_AMFLAGS = -I ../../..
@@ -300,6 +297,18 @@ lib_a-write.o: write.c
 
 lib_a-write.obj: write.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-write.obj `if test -f 'write.c'; then $(CYGPATH_W) 'write.c'; else $(CYGPATH_W) '$(srcdir)/write.c'; fi`
+
+lib_a-open.o: open.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-open.o `test -f 'open.c' || echo '$(srcdir)/'`open.c
+
+lib_a-open.obj: open.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-open.obj `if test -f 'open.c'; then $(CYGPATH_W) 'open.c'; else $(CYGPATH_W) '$(srcdir)/open.c'; fi`
+
+lib_a-close.o: close.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-close.o `test -f 'close.c' || echo '$(srcdir)/'`close.c
+
+lib_a-close.obj: close.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-close.obj `if test -f 'close.c'; then $(CYGPATH_W) 'close.c'; else $(CYGPATH_W) '$(srcdir)/close.c'; fi`
 
 lib_a-execve.o: execve.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-execve.o `test -f 'execve.c' || echo '$(srcdir)/'`execve.c
