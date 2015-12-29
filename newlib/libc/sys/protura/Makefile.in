@@ -72,15 +72,21 @@ lib_a_LIBADD =
 @MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-write.$(OBJEXT) \
 @MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-open.$(OBJEXT) \
 @MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-close.$(OBJEXT) \
+@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-link.$(OBJEXT) \
+@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-unlink.$(OBJEXT) \
+@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-sync.$(OBJEXT) \
+@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-wait.$(OBJEXT) \
 @MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-execve.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-_exit.$(OBJEXT)
-am_lib_a_OBJECTS = $(am__objects_1) lib_a-crt0.$(OBJEXT)
+@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-_exit.$(OBJEXT) \
+@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-sbrk.$(OBJEXT) \
+@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-lseek.$(OBJEXT) \
+@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-fstat.$(OBJEXT) \
+@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-isatty.$(OBJEXT)
+am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp =
 am__depfiles_maybe =
-CPPASCOMPILE = $(CCAS) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CCASFLAGS) $(CCASFLAGS)
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
@@ -208,10 +214,18 @@ noinst_LIBRARIES = lib.a
 @MAY_SUPPLY_SYSCALLS_TRUE@	write.c \
 @MAY_SUPPLY_SYSCALLS_TRUE@	open.c \
 @MAY_SUPPLY_SYSCALLS_TRUE@	close.c \
+@MAY_SUPPLY_SYSCALLS_TRUE@	link.c \
+@MAY_SUPPLY_SYSCALLS_TRUE@	unlink.c \
+@MAY_SUPPLY_SYSCALLS_TRUE@	sync.c \
+@MAY_SUPPLY_SYSCALLS_TRUE@	wait.c \
 @MAY_SUPPLY_SYSCALLS_TRUE@	execve.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	_exit.c
+@MAY_SUPPLY_SYSCALLS_TRUE@	_exit.c \
+@MAY_SUPPLY_SYSCALLS_TRUE@	sbrk.c \
+@MAY_SUPPLY_SYSCALLS_TRUE@	lseek.c \
+@MAY_SUPPLY_SYSCALLS_TRUE@	fstat.c \
+@MAY_SUPPLY_SYSCALLS_TRUE@	isatty.c
 
-lib_a_SOURCES = $(extra_sources) crt0.S
+lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
 lib_a_CFLAGS = $(AM_CFLAGS)
 ACLOCAL_AMFLAGS = -I ../../..
@@ -219,7 +233,7 @@ CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .S .c .o .obj
+.SUFFIXES: .c .o .obj
 am--refresh: Makefile
 	@:
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
@@ -268,18 +282,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-.S.o:
-	$(CPPASCOMPILE) -c -o $@ $<
-
-.S.obj:
-	$(CPPASCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-lib_a-crt0.o: crt0.S
-	$(CCAS) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-crt0.o `test -f 'crt0.S' || echo '$(srcdir)/'`crt0.S
-
-lib_a-crt0.obj: crt0.S
-	$(CCAS) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-crt0.obj `if test -f 'crt0.S'; then $(CYGPATH_W) 'crt0.S'; else $(CYGPATH_W) '$(srcdir)/crt0.S'; fi`
-
 .c.o:
 	$(COMPILE) -c $<
 
@@ -310,6 +312,30 @@ lib_a-close.o: close.c
 lib_a-close.obj: close.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-close.obj `if test -f 'close.c'; then $(CYGPATH_W) 'close.c'; else $(CYGPATH_W) '$(srcdir)/close.c'; fi`
 
+lib_a-link.o: link.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-link.o `test -f 'link.c' || echo '$(srcdir)/'`link.c
+
+lib_a-link.obj: link.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-link.obj `if test -f 'link.c'; then $(CYGPATH_W) 'link.c'; else $(CYGPATH_W) '$(srcdir)/link.c'; fi`
+
+lib_a-unlink.o: unlink.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-unlink.o `test -f 'unlink.c' || echo '$(srcdir)/'`unlink.c
+
+lib_a-unlink.obj: unlink.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-unlink.obj `if test -f 'unlink.c'; then $(CYGPATH_W) 'unlink.c'; else $(CYGPATH_W) '$(srcdir)/unlink.c'; fi`
+
+lib_a-sync.o: sync.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-sync.o `test -f 'sync.c' || echo '$(srcdir)/'`sync.c
+
+lib_a-sync.obj: sync.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-sync.obj `if test -f 'sync.c'; then $(CYGPATH_W) 'sync.c'; else $(CYGPATH_W) '$(srcdir)/sync.c'; fi`
+
+lib_a-wait.o: wait.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-wait.o `test -f 'wait.c' || echo '$(srcdir)/'`wait.c
+
+lib_a-wait.obj: wait.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-wait.obj `if test -f 'wait.c'; then $(CYGPATH_W) 'wait.c'; else $(CYGPATH_W) '$(srcdir)/wait.c'; fi`
+
 lib_a-execve.o: execve.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-execve.o `test -f 'execve.c' || echo '$(srcdir)/'`execve.c
 
@@ -321,6 +347,30 @@ lib_a-_exit.o: _exit.c
 
 lib_a-_exit.obj: _exit.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-_exit.obj `if test -f '_exit.c'; then $(CYGPATH_W) '_exit.c'; else $(CYGPATH_W) '$(srcdir)/_exit.c'; fi`
+
+lib_a-sbrk.o: sbrk.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-sbrk.o `test -f 'sbrk.c' || echo '$(srcdir)/'`sbrk.c
+
+lib_a-sbrk.obj: sbrk.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-sbrk.obj `if test -f 'sbrk.c'; then $(CYGPATH_W) 'sbrk.c'; else $(CYGPATH_W) '$(srcdir)/sbrk.c'; fi`
+
+lib_a-lseek.o: lseek.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-lseek.o `test -f 'lseek.c' || echo '$(srcdir)/'`lseek.c
+
+lib_a-lseek.obj: lseek.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-lseek.obj `if test -f 'lseek.c'; then $(CYGPATH_W) 'lseek.c'; else $(CYGPATH_W) '$(srcdir)/lseek.c'; fi`
+
+lib_a-fstat.o: fstat.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-fstat.o `test -f 'fstat.c' || echo '$(srcdir)/'`fstat.c
+
+lib_a-fstat.obj: fstat.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-fstat.obj `if test -f 'fstat.c'; then $(CYGPATH_W) 'fstat.c'; else $(CYGPATH_W) '$(srcdir)/fstat.c'; fi`
+
+lib_a-isatty.o: isatty.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-isatty.o `test -f 'isatty.c' || echo '$(srcdir)/'`isatty.c
+
+lib_a-isatty.obj: isatty.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-isatty.obj `if test -f 'isatty.c'; then $(CYGPATH_W) 'isatty.c'; else $(CYGPATH_W) '$(srcdir)/isatty.c'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
