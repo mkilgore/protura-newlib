@@ -100,6 +100,10 @@
 #endif
 #endif
 
+#if defined(__protura__)
+#define _READ_WRITE_RETURN_TYPE _ssize_t
+#endif
+
 #ifdef __mn10200__
 #define __SMALL_BITFIELDS
 #endif

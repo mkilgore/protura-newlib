@@ -13,14 +13,22 @@ extra_sources = \
 	write.c \
 	open.c \
 	close.c \
+	link.c \
+	unlink.c \
+	sync.c \
+	wait.c \
 	execve.c \
-	_exit.c
+	_exit.c \
+	sbrk.c \
+	lseek.c \
+	fstat.c \
+	isatty.c
 
 else
 extra_sources =
 endif
 
-lib_a_SOURCES = $(extra_sources) crt0.S
+lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
 lib_a_CFLAGS = $(AM_CFLAGS)
 

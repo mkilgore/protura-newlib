@@ -5,10 +5,10 @@
 #include <stdint.h>
 #include <unistd.h>
 
-int close(int fd)
+int wait(int *wait_ret)
 {
     int ret;
-    ret = syscall1(SYSCALL_CLOSE, (uint32_t)fd);
+    ret = syscall1(SYSCALL_WAIT, (uint32_t)wait_ret);
     if (ret < 0) {
         errno = -ret;
         return -1;

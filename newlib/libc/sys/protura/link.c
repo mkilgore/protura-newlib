@@ -5,10 +5,10 @@
 #include <stdint.h>
 #include <unistd.h>
 
-int close(int fd)
+int link(const char *file, const char *file2)
 {
     int ret;
-    ret = syscall1(SYSCALL_CLOSE, (uint32_t)fd);
+    ret = syscall2(SYSCALL_UNLINK, (uint32_t)file, (uint32_t)file2);
     if (ret < 0) {
         errno = -ret;
         return -1;
