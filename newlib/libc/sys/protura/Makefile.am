@@ -6,8 +6,6 @@ AM_CCASFLAGS = $(INCLUDES)
 
 noinst_LIBRARIES = lib.a
 
-if MAY_SUPPLY_SYSCALLS
-
 extra_sources = \
 	read.c \
 	write.c \
@@ -24,18 +22,18 @@ extra_sources = \
 	fstat.c \
 	isatty.c
 
-else
-extra_sources =
-endif
-
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
 lib_a_CFLAGS = $(AM_CFLAGS)
 
-if MAY_SUPPLY_SYSCALLS
-all: crt0.o
-endif
+# This is necessary because automake doesn't think there are any .S sources
+# here - The only one is crt0.S, which is used to build crt0.o.
+#
+# There is probably a better way to do this but this gets us what we want.
+SUFFIXES = .S
 
-ACLOCAL_AMFLAGS = -I ../../..
+all-local: crt0.o
+
+ACLOCAL_AMFLAGS = -I ../../.. -I ../../../..
 CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host
 
