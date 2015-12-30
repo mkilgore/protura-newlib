@@ -68,20 +68,13 @@ LIBRARIES = $(noinst_LIBRARIES)
 ARFLAGS = cru
 lib_a_AR = $(AR) $(ARFLAGS)
 lib_a_LIBADD =
-@MAY_SUPPLY_SYSCALLS_TRUE@am__objects_1 = lib_a-read.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-write.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-open.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-close.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-link.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-unlink.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-sync.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-wait.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-execve.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-_exit.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-sbrk.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-lseek.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-fstat.$(OBJEXT) \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lib_a-isatty.$(OBJEXT)
+am__objects_1 = lib_a-read.$(OBJEXT) lib_a-write.$(OBJEXT) \
+	lib_a-open.$(OBJEXT) lib_a-close.$(OBJEXT) \
+	lib_a-link.$(OBJEXT) lib_a-unlink.$(OBJEXT) \
+	lib_a-sync.$(OBJEXT) lib_a-wait.$(OBJEXT) \
+	lib_a-execve.$(OBJEXT) lib_a-_exit.$(OBJEXT) \
+	lib_a-sbrk.$(OBJEXT) lib_a-lseek.$(OBJEXT) \
+	lib_a-fstat.$(OBJEXT) lib_a-isatty.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -208,32 +201,32 @@ AUTOMAKE_OPTIONS = cygnus
 INCLUDES = -I$(srcdir)/include $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS)
 AM_CCASFLAGS = $(INCLUDES)
 noinst_LIBRARIES = lib.a
-@MAY_SUPPLY_SYSCALLS_FALSE@extra_sources = 
-@MAY_SUPPLY_SYSCALLS_TRUE@extra_sources = \
-@MAY_SUPPLY_SYSCALLS_TRUE@	read.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	write.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	open.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	close.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	link.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	unlink.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	sync.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	wait.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	execve.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	_exit.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	sbrk.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	lseek.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	fstat.c \
-@MAY_SUPPLY_SYSCALLS_TRUE@	isatty.c
+extra_sources = \
+	read.c \
+	write.c \
+	open.c \
+	close.c \
+	link.c \
+	unlink.c \
+	sync.c \
+	wait.c \
+	execve.c \
+	_exit.c \
+	sbrk.c \
+	lseek.c \
+	fstat.c \
+	isatty.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
 lib_a_CFLAGS = $(AM_CFLAGS)
-ACLOCAL_AMFLAGS = -I ../../..
+SUFFIXES = .S
+ACLOCAL_AMFLAGS = -I ../../.. -I ../../../..
 CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .o .obj
+.SUFFIXES: .S .c .o .obj
 am--refresh: Makefile
 	@:
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
@@ -449,7 +442,7 @@ distclean-tags:
 	-rm -f cscope.out cscope.in.out cscope.po.out cscope.files
 check-am:
 check: check-am
-all-am: Makefile $(LIBRARIES)
+all-am: Makefile $(LIBRARIES) all-local
 installdirs:
 install: install-am
 install-exec: install-exec-am
@@ -553,8 +546,8 @@ uninstall-am:
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am am--refresh check check-am clean \
-	clean-cscope clean-generic clean-noinstLIBRARIES cscope \
+.PHONY: CTAGS GTAGS all all-am all-local am--refresh check check-am \
+	clean clean-cscope clean-generic clean-noinstLIBRARIES cscope \
 	cscopelist ctags distclean distclean-compile distclean-generic \
 	distclean-tags dvi dvi-am html html-am info info-am install \
 	install-am install-data install-data-am install-dvi \
@@ -567,7 +560,7 @@ uninstall-am:
 	tags uninstall uninstall-am
 
 
-@MAY_SUPPLY_SYSCALLS_TRUE@all: crt0.o
+all-local: crt0.o
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
