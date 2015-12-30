@@ -6,6 +6,11 @@ AM_CCASFLAGS = $(INCLUDES)
 
 noinst_LIBRARIES = lib.a
 
+tooldir = $(exec_prefix)/$(host_alias)
+toollibdir = $(tooldir)/lib$(MULTISUBDIR)
+
+toollib_DATA = crtn.o crti.o
+
 extra_sources = \
 	read.c \
 	write.c \
@@ -32,7 +37,7 @@ lib_a_CFLAGS = $(AM_CFLAGS)
 # There is probably a better way to do this but this gets us what we want.
 SUFFIXES = .S
 
-all-local: crt0.o
+all-local: crt0.o crtn.o crti.o
 
 ACLOCAL_AMFLAGS = -I ../../.. -I ../../../..
 CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host
