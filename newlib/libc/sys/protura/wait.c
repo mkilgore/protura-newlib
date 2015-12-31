@@ -14,6 +14,6 @@ int wait(int *wait_ret)
         return -1;
     }
 
-    return 0;
+    return ret;
 }
 

@@ -14,6 +14,6 @@ int open(const char *file, int flags, mode_t mode)
         return -1;
     }
 
-    return 0;
+    return ret;
 }
 
