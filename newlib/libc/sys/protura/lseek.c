@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <unistd.h>
 
-off_t lseek(int fd, off_t offset, int whence)
+off_t _lseek(int fd, off_t offset, int whence)
 {
     int ret;
     ret = syscall3(SYSCALL_LSEEK, fd, (uint32_t)offset, whence);

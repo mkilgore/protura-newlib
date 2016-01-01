@@ -5,8 +5,9 @@
 #include <stdint.h>
 #include <unistd.h>
 
-int _isatty(int fd)
+int _gettimeofday(struct timeval *tv, struct timezone *tz)
 {
-    return 1;
+    errno = EINVAL;
+    return -1;
 }
 

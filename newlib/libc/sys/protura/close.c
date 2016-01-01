@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <unistd.h>
 
-int close(int fd)
+int _close(int fd)
 {
     int ret;
     ret = syscall1(SYSCALL_CLOSE, (uint32_t)fd);

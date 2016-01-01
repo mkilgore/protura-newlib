@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <unistd.h>
 
-void *sbrk(intptr_t increment)
+void *_sbrk(intptr_t increment)
 {
     int ret;
     ret = syscall1(SYSCALL_SBRK, (uint32_t)increment);

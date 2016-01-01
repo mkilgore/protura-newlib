@@ -1,12 +1,14 @@
 
+
 #include "syscall.h"
 #include <sys/errno.h>
 #include <sys/types.h>
 #include <stdint.h>
 #include <unistd.h>
 
-int _isatty(int fd)
+int _kill(pid_t pid, int sig)
 {
-    return 1;
+    errno = EINVAL;
+    return -1;
 }
 

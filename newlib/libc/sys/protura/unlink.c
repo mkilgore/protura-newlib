@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <unistd.h>
 
-int unlink(const char *file)
+int _unlink(const char *file)
 {
     int ret;
     ret = syscall1(SYSCALL_UNLINK, (uint32_t)file);

@@ -5,14 +5,17 @@
 #include <stdint.h>
 #include <unistd.h>
 
-ssize_t _write(int fd, const void *buf, size_t count)
+int truncate(const char *path, off_t length)
 {
     int ret;
-    ret = syscall3(SYSCALL_WRITE, (uint32_t)fd, (uint32_t)buf, (uint32_t)count);
+
+    ret = syscall2(SYSCALL_TRUNCATE, (int)path, (int)length);
+
     if (ret < 0) {
         errno = -ret;
         return -1;
     }
 
-    return ret;
+    return 0;
 }
+

@@ -5,10 +5,10 @@
 #include <stdint.h>
 #include <unistd.h>
 
-ssize_t _write(int fd, const void *buf, size_t count)
+pid_t _fork(void)
 {
     int ret;
-    ret = syscall3(SYSCALL_WRITE, (uint32_t)fd, (uint32_t)buf, (uint32_t)count);
+    ret = syscall0(SYSCALL_FORK);
     if (ret < 0) {
         errno = -ret;
         return -1;
@@ -16,3 +16,9 @@ ssize_t _write(int fd, const void *buf, size_t count)
 
     return ret;
 }
+
+pid_t vfork(void)
+{
+    return fork();
+}
+

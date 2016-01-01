@@ -5,8 +5,9 @@
 #include <stdint.h>
 #include <unistd.h>
 
-int fstat(int fd, struct stat *buf)
+int _fstat(int fd, struct stat *buf)
 {
-    return -EACCES;
+    errno = EACCES;
+    return -1;
 }
 

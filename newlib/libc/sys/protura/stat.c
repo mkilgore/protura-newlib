@@ -5,8 +5,9 @@
 #include <stdint.h>
 #include <unistd.h>
 
-int _isatty(int fd)
+int _stat(char *file, struct stat *st)
 {
-    return 1;
+    errno = EACCES;
+    return -1;
 }
 

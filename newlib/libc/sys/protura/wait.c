@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <unistd.h>
 
-int wait(int *wait_ret)
+int _wait(int *wait_ret)
 {
     int ret;
     ret = syscall1(SYSCALL_WAIT, (uint32_t)wait_ret);

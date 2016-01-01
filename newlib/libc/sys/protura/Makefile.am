@@ -6,9 +6,7 @@ AM_CCASFLAGS = $(INCLUDES)
 
 noinst_LIBRARIES = lib.a
 
-tooldir = $(exec_prefix)/$(host_alias)
 toollibdir = $(tooldir)/lib$(MULTISUBDIR)
-
 toollib_DATA = crtn.o crti.o
 
 extra_sources = \
@@ -25,7 +23,19 @@ extra_sources = \
 	sbrk.c \
 	lseek.c \
 	fstat.c \
-	isatty.c
+	isatty.c \
+	getdents.c \
+	getpid.c \
+	getppid.c \
+	chdir.c \
+	truncate.c \
+	ftruncate.c \
+	fork.c \
+	fcntl.c \
+	gettimeofday.c \
+	kill.c \
+	stat.c \
+	times.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)

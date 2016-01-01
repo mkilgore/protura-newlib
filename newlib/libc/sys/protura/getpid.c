@@ -5,8 +5,8 @@
 #include <stdint.h>
 #include <unistd.h>
 
-int _isatty(int fd)
+pid_t _getpid(void)
 {
-    return 1;
+    return syscall0(SYSCALL_GETPID);
 }
 
