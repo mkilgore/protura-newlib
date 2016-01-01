@@ -75,7 +75,13 @@ am__objects_1 = lib_a-read.$(OBJEXT) lib_a-write.$(OBJEXT) \
 	lib_a-sync.$(OBJEXT) lib_a-wait.$(OBJEXT) \
 	lib_a-execve.$(OBJEXT) lib_a-_exit.$(OBJEXT) \
 	lib_a-sbrk.$(OBJEXT) lib_a-lseek.$(OBJEXT) \
-	lib_a-fstat.$(OBJEXT) lib_a-isatty.$(OBJEXT)
+	lib_a-fstat.$(OBJEXT) lib_a-isatty.$(OBJEXT) \
+	lib_a-getdents.$(OBJEXT) lib_a-getpid.$(OBJEXT) \
+	lib_a-getppid.$(OBJEXT) lib_a-chdir.$(OBJEXT) \
+	lib_a-truncate.$(OBJEXT) lib_a-ftruncate.$(OBJEXT) \
+	lib_a-fork.$(OBJEXT) lib_a-fcntl.$(OBJEXT) \
+	lib_a-gettimeofday.$(OBJEXT) lib_a-kill.$(OBJEXT) \
+	lib_a-stat.$(OBJEXT) lib_a-times.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -231,7 +237,6 @@ AUTOMAKE_OPTIONS = cygnus
 INCLUDES = -I$(srcdir)/include $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS)
 AM_CCASFLAGS = $(INCLUDES)
 noinst_LIBRARIES = lib.a
-tooldir = $(exec_prefix)/$(host_alias)
 toollibdir = $(tooldir)/lib$(MULTISUBDIR)
 toollib_DATA = crtn.o crti.o
 extra_sources = \
@@ -248,7 +253,19 @@ extra_sources = \
 	sbrk.c \
 	lseek.c \
 	fstat.c \
-	isatty.c
+	isatty.c \
+	getdents.c \
+	getpid.c \
+	getppid.c \
+	chdir.c \
+	truncate.c \
+	ftruncate.c \
+	fork.c \
+	fcntl.c \
+	gettimeofday.c \
+	kill.c \
+	stat.c \
+	times.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
@@ -402,6 +419,78 @@ lib_a-isatty.o: isatty.c
 
 lib_a-isatty.obj: isatty.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-isatty.obj `if test -f 'isatty.c'; then $(CYGPATH_W) 'isatty.c'; else $(CYGPATH_W) '$(srcdir)/isatty.c'; fi`
+
+lib_a-getdents.o: getdents.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getdents.o `test -f 'getdents.c' || echo '$(srcdir)/'`getdents.c
+
+lib_a-getdents.obj: getdents.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getdents.obj `if test -f 'getdents.c'; then $(CYGPATH_W) 'getdents.c'; else $(CYGPATH_W) '$(srcdir)/getdents.c'; fi`
+
+lib_a-getpid.o: getpid.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getpid.o `test -f 'getpid.c' || echo '$(srcdir)/'`getpid.c
+
+lib_a-getpid.obj: getpid.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getpid.obj `if test -f 'getpid.c'; then $(CYGPATH_W) 'getpid.c'; else $(CYGPATH_W) '$(srcdir)/getpid.c'; fi`
+
+lib_a-getppid.o: getppid.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getppid.o `test -f 'getppid.c' || echo '$(srcdir)/'`getppid.c
+
+lib_a-getppid.obj: getppid.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-getppid.obj `if test -f 'getppid.c'; then $(CYGPATH_W) 'getppid.c'; else $(CYGPATH_W) '$(srcdir)/getppid.c'; fi`
+
+lib_a-chdir.o: chdir.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-chdir.o `test -f 'chdir.c' || echo '$(srcdir)/'`chdir.c
+
+lib_a-chdir.obj: chdir.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-chdir.obj `if test -f 'chdir.c'; then $(CYGPATH_W) 'chdir.c'; else $(CYGPATH_W) '$(srcdir)/chdir.c'; fi`
+
+lib_a-truncate.o: truncate.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-truncate.o `test -f 'truncate.c' || echo '$(srcdir)/'`truncate.c
+
+lib_a-truncate.obj: truncate.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-truncate.obj `if test -f 'truncate.c'; then $(CYGPATH_W) 'truncate.c'; else $(CYGPATH_W) '$(srcdir)/truncate.c'; fi`
+
+lib_a-ftruncate.o: ftruncate.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-ftruncate.o `test -f 'ftruncate.c' || echo '$(srcdir)/'`ftruncate.c
+
+lib_a-ftruncate.obj: ftruncate.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-ftruncate.obj `if test -f 'ftruncate.c'; then $(CYGPATH_W) 'ftruncate.c'; else $(CYGPATH_W) '$(srcdir)/ftruncate.c'; fi`
+
+lib_a-fork.o: fork.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-fork.o `test -f 'fork.c' || echo '$(srcdir)/'`fork.c
+
+lib_a-fork.obj: fork.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-fork.obj `if test -f 'fork.c'; then $(CYGPATH_W) 'fork.c'; else $(CYGPATH_W) '$(srcdir)/fork.c'; fi`
+
+lib_a-fcntl.o: fcntl.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-fcntl.o `test -f 'fcntl.c' || echo '$(srcdir)/'`fcntl.c
+
+lib_a-fcntl.obj: fcntl.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-fcntl.obj `if test -f 'fcntl.c'; then $(CYGPATH_W) 'fcntl.c'; else $(CYGPATH_W) '$(srcdir)/fcntl.c'; fi`
+
+lib_a-gettimeofday.o: gettimeofday.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-gettimeofday.o `test -f 'gettimeofday.c' || echo '$(srcdir)/'`gettimeofday.c
+
+lib_a-gettimeofday.obj: gettimeofday.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-gettimeofday.obj `if test -f 'gettimeofday.c'; then $(CYGPATH_W) 'gettimeofday.c'; else $(CYGPATH_W) '$(srcdir)/gettimeofday.c'; fi`
+
+lib_a-kill.o: kill.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-kill.o `test -f 'kill.c' || echo '$(srcdir)/'`kill.c
+
+lib_a-kill.obj: kill.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-kill.obj `if test -f 'kill.c'; then $(CYGPATH_W) 'kill.c'; else $(CYGPATH_W) '$(srcdir)/kill.c'; fi`
+
+lib_a-stat.o: stat.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-stat.o `test -f 'stat.c' || echo '$(srcdir)/'`stat.c
+
+lib_a-stat.obj: stat.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-stat.obj `if test -f 'stat.c'; then $(CYGPATH_W) 'stat.c'; else $(CYGPATH_W) '$(srcdir)/stat.c'; fi`
+
+lib_a-times.o: times.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-times.o `test -f 'times.c' || echo '$(srcdir)/'`times.c
+
+lib_a-times.obj: times.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-times.obj `if test -f 'times.c'; then $(CYGPATH_W) 'times.c'; else $(CYGPATH_W) '$(srcdir)/times.c'; fi`
 install-toollibDATA: $(toollib_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(toollib_DATA)'; test -n "$(toollibdir)" || list=; \

@@ -1,6 +1,9 @@
 #ifndef _NEWLIB_PROTURA_SYSCALL_H
 #define _NEWLIB_PROTURA_SYSCALL_H
 
+#include <protura/syscall.h>
+
+#if 0
 #define INT_SYSCALL 0x81
 
 #define SYSCALL_PUTCHAR 0x01
@@ -31,7 +34,7 @@
 #define SYSCALL_LINK    0x1A
 #define SYSCALL_SYNC    0x1B
 #define SYSCALL_UNLINK  0x1C
-
+#endif
 
 #define QQ(x) #x
 #define Q(x) QQ(x)
