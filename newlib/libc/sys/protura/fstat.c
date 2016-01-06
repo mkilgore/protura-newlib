@@ -7,7 +7,15 @@
 
 int _fstat(int fd, struct stat *buf)
 {
-    errno = EACCES;
-    return -1;
+    int ret;
+
+    ret = syscall2(SYSCALL_FSTAT, fd, (int)buf);
+
+    if (ret < 0) {
+        errno = ret;
+        return -1;
+    }
+
+    return 0;
 }
 

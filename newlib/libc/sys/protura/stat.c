@@ -7,7 +7,15 @@
 
 int _stat(char *file, struct stat *st)
 {
-    errno = EACCES;
-    return -1;
+    int ret;
+
+    ret = syscall2(SYSCALL_STAT, (int)file, (int)st);
+
+    if (ret < 0) {
+        errno = ret;
+        return -1;
+    }
+
+    return 0;
 }
 
