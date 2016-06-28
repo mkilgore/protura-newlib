@@ -81,7 +81,8 @@ am__objects_1 = lib_a-read.$(OBJEXT) lib_a-write.$(OBJEXT) \
 	lib_a-truncate.$(OBJEXT) lib_a-ftruncate.$(OBJEXT) \
 	lib_a-fork.$(OBJEXT) lib_a-fcntl.$(OBJEXT) \
 	lib_a-gettimeofday.$(OBJEXT) lib_a-kill.$(OBJEXT) \
-	lib_a-stat.$(OBJEXT) lib_a-times.$(OBJEXT)
+	lib_a-stat.$(OBJEXT) lib_a-times.$(OBJEXT) \
+	lib_a-pipe.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -265,7 +266,8 @@ extra_sources = \
 	gettimeofday.c \
 	kill.c \
 	stat.c \
-	times.c
+	times.c \
+	pipe.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
@@ -491,6 +493,12 @@ lib_a-times.o: times.c
 
 lib_a-times.obj: times.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-times.obj `if test -f 'times.c'; then $(CYGPATH_W) 'times.c'; else $(CYGPATH_W) '$(srcdir)/times.c'; fi`
+
+lib_a-pipe.o: pipe.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-pipe.o `test -f 'pipe.c' || echo '$(srcdir)/'`pipe.c
+
+lib_a-pipe.obj: pipe.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-pipe.obj `if test -f 'pipe.c'; then $(CYGPATH_W) 'pipe.c'; else $(CYGPATH_W) '$(srcdir)/pipe.c'; fi`
 install-toollibDATA: $(toollib_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(toollib_DATA)'; test -n "$(toollibdir)" || list=; \

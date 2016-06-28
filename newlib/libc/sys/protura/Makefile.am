@@ -35,7 +35,8 @@ extra_sources = \
 	gettimeofday.c \
 	kill.c \
 	stat.c \
-	times.c
+	times.c \
+	pipe.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
