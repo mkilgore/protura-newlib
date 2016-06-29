@@ -12,7 +12,7 @@ int _stat(char *file, struct stat *st)
     ret = syscall2(SYSCALL_STAT, (int)file, (int)st);
 
     if (ret < 0) {
-        errno = ret;
+        errno = -ret;
         return -1;
     }
 
