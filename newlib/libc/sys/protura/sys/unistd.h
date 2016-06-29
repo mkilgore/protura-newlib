@@ -19,7 +19,14 @@ void _EXFUN(_exit, (int __status) _ATTRIBUTE((__noreturn__)));
 
 int _EXFUN(chdir, (const char *__path));
 int _EXFUN(close, (int __fildes));
+
+int _EXFUN(execl,  (const char *__path, const char *, ...));
+int _EXFUN(execle,  (const char *__path, const char *, ...));
+int _EXFUN(execlp, (const char *__file, const char *, ...));
+
+int _EXFUN(execv,  (const char *__path, char *const __argv[]));
 int _EXFUN(execve, (const char *__path, char *const __argv[], char *const __envp[]));
+int _EXFUN(execvp, (const char *__file, char *const __argv[]));
 
 void _EXFUN(sync, (void));
 
