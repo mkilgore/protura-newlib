@@ -36,7 +36,9 @@ extra_sources = \
 	kill.c \
 	stat.c \
 	times.c \
-	pipe.c
+	pipe.c \
+	dup.c \
+	dup2.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
