@@ -82,7 +82,8 @@ am__objects_1 = lib_a-read.$(OBJEXT) lib_a-write.$(OBJEXT) \
 	lib_a-fork.$(OBJEXT) lib_a-fcntl.$(OBJEXT) \
 	lib_a-gettimeofday.$(OBJEXT) lib_a-kill.$(OBJEXT) \
 	lib_a-stat.$(OBJEXT) lib_a-times.$(OBJEXT) \
-	lib_a-pipe.$(OBJEXT) lib_a-dup.$(OBJEXT) lib_a-dup2.$(OBJEXT)
+	lib_a-pipe.$(OBJEXT) lib_a-dup.$(OBJEXT) lib_a-dup2.$(OBJEXT) \
+	lib_a-signal.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -269,7 +270,8 @@ extra_sources = \
 	times.c \
 	pipe.c \
 	dup.c \
-	dup2.c
+	dup2.c \
+	signal.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
@@ -513,6 +515,12 @@ lib_a-dup2.o: dup2.c
 
 lib_a-dup2.obj: dup2.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-dup2.obj `if test -f 'dup2.c'; then $(CYGPATH_W) 'dup2.c'; else $(CYGPATH_W) '$(srcdir)/dup2.c'; fi`
+
+lib_a-signal.o: signal.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-signal.o `test -f 'signal.c' || echo '$(srcdir)/'`signal.c
+
+lib_a-signal.obj: signal.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-signal.obj `if test -f 'signal.c'; then $(CYGPATH_W) 'signal.c'; else $(CYGPATH_W) '$(srcdir)/signal.c'; fi`
 install-toollibDATA: $(toollib_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(toollib_DATA)'; test -n "$(toollibdir)" || list=; \

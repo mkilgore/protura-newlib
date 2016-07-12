@@ -38,7 +38,8 @@ extra_sources = \
 	times.c \
 	pipe.c \
 	dup.c \
-	dup2.c
+	dup2.c \
+	signal.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
