@@ -61,6 +61,9 @@ int _EXFUN(truncate, (const char *, off_t __length));
 
 int _EXFUN(pipe, (int __pipefd[2]));
 
+int _EXFUN(pause, (void));
+int _EXFUN(sleep, (int seconds));
+
 #define SEEK_SET 0
 #define SEEK_CUR 1
 #define SEEK_END 2

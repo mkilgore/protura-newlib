@@ -71,3 +71,40 @@ _sig_func_ptr signal(int signum, _sig_func_ptr handler)
     return ret;
 }
 
+int pause(void)
+{
+    int ret;
+
+    ret = syscall0(SYSCALL_PAUSE);
+
+    if (ret) {
+        errno = -ret;
+        return -1;
+    }
+
+    return 0;
+}
+
+int sigsuspend(const sigset_t *mask)
+{
+    int ret;
+
+    ret = syscall1(SYSCALL_SIGSUSPEND, (int)mask);
+
+    if (ret) {
+        errno = -ret;
+        return -1;
+    }
+
+    return 0;
+}
+
+int sleep(int seconds)
+{
+    int ret;
+
+    ret = syscall1(SYSCALL_SLEEP, seconds);
+
+    return ret;
+}
+

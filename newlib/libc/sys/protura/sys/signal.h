@@ -22,6 +22,7 @@ int _EXFUN(sigemptyset, (sigset_t *set));
 int _EXFUN(sigfillset, (sigset_t *set));
 int _EXFUN(sigpending, (sigset_t *set));
 int _EXFUN(sigwait, (const sigset_t *, int *signum));
+int _EXFUN(sigsuspend, (const sigset_t *mask));
 int _EXFUN(sigprocmask, (int how, const sigset_t *set, sigset_t *oldset));
 
 #endif
