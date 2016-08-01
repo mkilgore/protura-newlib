@@ -72,6 +72,7 @@ lib_a_LIBADD =
 am__objects_1 = lib_a-read.$(OBJEXT) lib_a-write.$(OBJEXT) \
 	lib_a-open.$(OBJEXT) lib_a-close.$(OBJEXT) \
 	lib_a-link.$(OBJEXT) lib_a-unlink.$(OBJEXT) \
+	lib_a-mkdir.$(OBJEXT) lib_a-mknod.$(OBJEXT) \
 	lib_a-sync.$(OBJEXT) lib_a-wait.$(OBJEXT) \
 	lib_a-execve.$(OBJEXT) lib_a-_exit.$(OBJEXT) \
 	lib_a-sbrk.$(OBJEXT) lib_a-lseek.$(OBJEXT) \
@@ -248,6 +249,8 @@ extra_sources = \
 	close.c \
 	link.c \
 	unlink.c \
+	mkdir.c \
+	mknod.c \
 	sync.c \
 	wait.c \
 	execve.c \
@@ -377,6 +380,18 @@ lib_a-unlink.o: unlink.c
 
 lib_a-unlink.obj: unlink.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-unlink.obj `if test -f 'unlink.c'; then $(CYGPATH_W) 'unlink.c'; else $(CYGPATH_W) '$(srcdir)/unlink.c'; fi`
+
+lib_a-mkdir.o: mkdir.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-mkdir.o `test -f 'mkdir.c' || echo '$(srcdir)/'`mkdir.c
+
+lib_a-mkdir.obj: mkdir.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-mkdir.obj `if test -f 'mkdir.c'; then $(CYGPATH_W) 'mkdir.c'; else $(CYGPATH_W) '$(srcdir)/mkdir.c'; fi`
+
+lib_a-mknod.o: mknod.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-mknod.o `test -f 'mknod.c' || echo '$(srcdir)/'`mknod.c
+
+lib_a-mknod.obj: mknod.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-mknod.obj `if test -f 'mknod.c'; then $(CYGPATH_W) 'mknod.c'; else $(CYGPATH_W) '$(srcdir)/mknod.c'; fi`
 
 lib_a-sync.o: sync.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-sync.o `test -f 'sync.c' || echo '$(srcdir)/'`sync.c

@@ -5,15 +5,15 @@
 #include <stdint.h>
 #include <unistd.h>
 
-int _link(const char *file, const char *file2)
+int mkdir(const char *file, mode_t mode)
 {
     int ret;
-    ret = syscall2(SYSCALL_LINK, (uint32_t)file, (uint32_t)file2);
+    ret = syscall2(SYSCALL_MKDIR, (uint32_t)file, (uint32_t)mode);
     if (ret < 0) {
         errno = -ret;
         return -1;
     }
 
-    return 0;
+    return ret;
 }
 
