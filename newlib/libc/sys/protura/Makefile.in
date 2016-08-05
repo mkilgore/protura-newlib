@@ -73,18 +73,18 @@ am__objects_1 = lib_a-read.$(OBJEXT) lib_a-write.$(OBJEXT) \
 	lib_a-open.$(OBJEXT) lib_a-close.$(OBJEXT) \
 	lib_a-link.$(OBJEXT) lib_a-unlink.$(OBJEXT) \
 	lib_a-mkdir.$(OBJEXT) lib_a-mknod.$(OBJEXT) \
-	lib_a-sync.$(OBJEXT) lib_a-wait.$(OBJEXT) \
-	lib_a-execve.$(OBJEXT) lib_a-_exit.$(OBJEXT) \
-	lib_a-sbrk.$(OBJEXT) lib_a-lseek.$(OBJEXT) \
-	lib_a-fstat.$(OBJEXT) lib_a-isatty.$(OBJEXT) \
-	lib_a-getdents.$(OBJEXT) lib_a-getpid.$(OBJEXT) \
-	lib_a-getppid.$(OBJEXT) lib_a-chdir.$(OBJEXT) \
-	lib_a-truncate.$(OBJEXT) lib_a-ftruncate.$(OBJEXT) \
-	lib_a-fork.$(OBJEXT) lib_a-fcntl.$(OBJEXT) \
-	lib_a-gettimeofday.$(OBJEXT) lib_a-kill.$(OBJEXT) \
-	lib_a-stat.$(OBJEXT) lib_a-times.$(OBJEXT) \
-	lib_a-pipe.$(OBJEXT) lib_a-dup.$(OBJEXT) lib_a-dup2.$(OBJEXT) \
-	lib_a-signal.$(OBJEXT)
+	lib_a-rmdir.$(OBJEXT) lib_a-sync.$(OBJEXT) \
+	lib_a-wait.$(OBJEXT) lib_a-execve.$(OBJEXT) \
+	lib_a-_exit.$(OBJEXT) lib_a-sbrk.$(OBJEXT) \
+	lib_a-lseek.$(OBJEXT) lib_a-fstat.$(OBJEXT) \
+	lib_a-isatty.$(OBJEXT) lib_a-getdents.$(OBJEXT) \
+	lib_a-getpid.$(OBJEXT) lib_a-getppid.$(OBJEXT) \
+	lib_a-chdir.$(OBJEXT) lib_a-truncate.$(OBJEXT) \
+	lib_a-ftruncate.$(OBJEXT) lib_a-fork.$(OBJEXT) \
+	lib_a-fcntl.$(OBJEXT) lib_a-gettimeofday.$(OBJEXT) \
+	lib_a-kill.$(OBJEXT) lib_a-stat.$(OBJEXT) \
+	lib_a-times.$(OBJEXT) lib_a-pipe.$(OBJEXT) lib_a-dup.$(OBJEXT) \
+	lib_a-dup2.$(OBJEXT) lib_a-signal.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -251,6 +251,7 @@ extra_sources = \
 	unlink.c \
 	mkdir.c \
 	mknod.c \
+	rmdir.c \
 	sync.c \
 	wait.c \
 	execve.c \
@@ -392,6 +393,12 @@ lib_a-mknod.o: mknod.c
 
 lib_a-mknod.obj: mknod.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-mknod.obj `if test -f 'mknod.c'; then $(CYGPATH_W) 'mknod.c'; else $(CYGPATH_W) '$(srcdir)/mknod.c'; fi`
+
+lib_a-rmdir.o: rmdir.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-rmdir.o `test -f 'rmdir.c' || echo '$(srcdir)/'`rmdir.c
+
+lib_a-rmdir.obj: rmdir.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-rmdir.obj `if test -f 'rmdir.c'; then $(CYGPATH_W) 'rmdir.c'; else $(CYGPATH_W) '$(srcdir)/rmdir.c'; fi`
 
 lib_a-sync.o: sync.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-sync.o `test -f 'sync.c' || echo '$(srcdir)/'`sync.c

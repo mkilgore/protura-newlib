@@ -18,6 +18,7 @@ extra_sources = \
 	unlink.c \
 	mkdir.c \
 	mknod.c \
+	rmdir.c \
 	sync.c \
 	wait.c \
 	execve.c \

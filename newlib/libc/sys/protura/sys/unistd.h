@@ -51,6 +51,8 @@ pid_t   _EXFUN(vfork, (void ));
 _READ_WRITE_RETURN_TYPE _EXFUN(read, (int __fd, void *__buf, size_t __nbyte));
 _READ_WRITE_RETURN_TYPE _EXFUN(write, (int __fd, const void*__buf, size_t __nbyte));
 
+int _EXFUN(rmdir, (const char *__name));
+
 extern char *optarg;
 extern int optind, opterr, optopt;
 int getopt(int, char *const[], const char *);
