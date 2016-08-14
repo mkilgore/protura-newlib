@@ -66,6 +66,9 @@ int _EXFUN(pipe, (int __pipefd[2]));
 int _EXFUN(pause, (void));
 int _EXFUN(sleep, (int seconds));
 
+ssize_t _EXFUN(readlink, (const char *__path, char *__buf, size_t __bufsize));
+int _EXFUN(symlink, (const char *__target, const char *__linkpath));
+
 #define SEEK_SET 0
 #define SEEK_CUR 1
 #define SEEK_END 2

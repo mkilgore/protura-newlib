@@ -5,12 +5,11 @@
 #include <stdint.h>
 #include <unistd.h>
 
-int _stat(char *file, struct stat *st)
+int symlink(const char *target, const char *path)
 {
     int ret;
 
-    ret = syscall2(SYSCALL_STAT, (int)file, (int)st);
-
+    ret = syscall2(SYSCALL_SYMLINK, (int)target, (int)path);
     if (ret < 0) {
         errno = -ret;
         return -1;
@@ -19,12 +18,11 @@ int _stat(char *file, struct stat *st)
     return 0;
 }
 
-int lstat(char *file, struct stat *st)
+ssize_t readlink(const char *path, char *buf, size_t bufsize)
 {
     int ret;
 
-    ret = syscall2(SYSCALL_LSTAT, (int)file, (int)st);
-
+    ret = syscall3(SYSCALL_READLINK, (int)path, (int)buf, (int)bufsize);
     if (ret < 0) {
         errno = -ret;
         return -1;

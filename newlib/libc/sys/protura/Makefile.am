@@ -19,6 +19,7 @@ extra_sources = \
 	mkdir.c \
 	mknod.c \
 	rmdir.c \
+	rename.c \
 	sync.c \
 	wait.c \
 	execve.c \
@@ -42,7 +43,8 @@ extra_sources = \
 	pipe.c \
 	dup.c \
 	dup2.c \
-	signal.c
+	signal.c \
+	symlink.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
