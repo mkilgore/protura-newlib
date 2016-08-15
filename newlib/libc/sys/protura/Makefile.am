@@ -44,7 +44,8 @@ extra_sources = \
 	dup.c \
 	dup2.c \
 	signal.c \
-	symlink.c
+	symlink.c \
+	mount.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)

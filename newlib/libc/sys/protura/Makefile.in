@@ -85,7 +85,8 @@ am__objects_1 = lib_a-read.$(OBJEXT) lib_a-write.$(OBJEXT) \
 	lib_a-gettimeofday.$(OBJEXT) lib_a-kill.$(OBJEXT) \
 	lib_a-stat.$(OBJEXT) lib_a-times.$(OBJEXT) \
 	lib_a-pipe.$(OBJEXT) lib_a-dup.$(OBJEXT) lib_a-dup2.$(OBJEXT) \
-	lib_a-signal.$(OBJEXT) lib_a-symlink.$(OBJEXT)
+	lib_a-signal.$(OBJEXT) lib_a-symlink.$(OBJEXT) \
+	lib_a-mount.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -278,7 +279,8 @@ extra_sources = \
 	dup.c \
 	dup2.c \
 	signal.c \
-	symlink.c
+	symlink.c \
+	mount.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
@@ -558,6 +560,12 @@ lib_a-symlink.o: symlink.c
 
 lib_a-symlink.obj: symlink.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-symlink.obj `if test -f 'symlink.c'; then $(CYGPATH_W) 'symlink.c'; else $(CYGPATH_W) '$(srcdir)/symlink.c'; fi`
+
+lib_a-mount.o: mount.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-mount.o `test -f 'mount.c' || echo '$(srcdir)/'`mount.c
+
+lib_a-mount.obj: mount.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-mount.obj `if test -f 'mount.c'; then $(CYGPATH_W) 'mount.c'; else $(CYGPATH_W) '$(srcdir)/mount.c'; fi`
 install-toollibDATA: $(toollib_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(toollib_DATA)'; test -n "$(toollibdir)" || list=; \
