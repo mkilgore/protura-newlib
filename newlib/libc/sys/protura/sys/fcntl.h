@@ -7,6 +7,7 @@
 
 extern int open _PARAMS((const char *, int, ...));
 extern int creat _PARAMS((const char *, mode_t));
+extern int fcntl _PARAMS((int fd, int cmd, ...));
 
 #ifdef _COMPILING_NEWLIB
 extern int _open _PARAMS((const char *, int, ...));
