@@ -47,6 +47,7 @@ int _EXFUN(unlink, (const char *__path));
 
 pid_t   _EXFUN(fork, (void ));
 pid_t   _EXFUN(vfork, (void ));
+pid_t   _EXFUN(fork_pgrp, (pid_t __pgrp));
 
 _READ_WRITE_RETURN_TYPE _EXFUN(read, (int __fd, void *__buf, size_t __nbyte));
 _READ_WRITE_RETURN_TYPE _EXFUN(write, (int __fd, const void*__buf, size_t __nbyte));
@@ -68,6 +69,9 @@ int _EXFUN(sleep, (int seconds));
 
 ssize_t _EXFUN(readlink, (const char *__path, char *__buf, size_t __bufsize));
 int _EXFUN(symlink, (const char *__target, const char *__linkpath));
+
+int _EXFUN(setpgid, (pid_t __pid, pid_t __pgid));
+pid_t _EXFUN(getpgrp, (void));
 
 #define SEEK_SET 0
 #define SEEK_CUR 1

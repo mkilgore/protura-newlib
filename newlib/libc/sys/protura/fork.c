@@ -22,3 +22,17 @@ pid_t vfork(void)
     return fork();
 }
 
+pid_t fork_pgrp(pid_t pgrp)
+{
+    int ret;
+
+    ret = syscall1(SYSCALL_FORK_PGRP, (uint32_t)pgrp);
+
+    if (ret < 0) {
+        errno = -ret;
+        return -1;
+    }
+
+    return ret;
+}
+
