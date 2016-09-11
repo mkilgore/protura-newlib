@@ -86,7 +86,8 @@ am__objects_1 = lib_a-read.$(OBJEXT) lib_a-write.$(OBJEXT) \
 	lib_a-stat.$(OBJEXT) lib_a-times.$(OBJEXT) \
 	lib_a-pipe.$(OBJEXT) lib_a-dup.$(OBJEXT) lib_a-dup2.$(OBJEXT) \
 	lib_a-signal.$(OBJEXT) lib_a-symlink.$(OBJEXT) \
-	lib_a-mount.$(OBJEXT) lib_a-pgrp.$(OBJEXT)
+	lib_a-mount.$(OBJEXT) lib_a-pgrp.$(OBJEXT) \
+	lib_a-ioctl.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -281,7 +282,8 @@ extra_sources = \
 	signal.c \
 	symlink.c \
 	mount.c \
-	pgrp.c
+	pgrp.c \
+	ioctl.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
@@ -573,6 +575,12 @@ lib_a-pgrp.o: pgrp.c
 
 lib_a-pgrp.obj: pgrp.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-pgrp.obj `if test -f 'pgrp.c'; then $(CYGPATH_W) 'pgrp.c'; else $(CYGPATH_W) '$(srcdir)/pgrp.c'; fi`
+
+lib_a-ioctl.o: ioctl.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-ioctl.o `test -f 'ioctl.c' || echo '$(srcdir)/'`ioctl.c
+
+lib_a-ioctl.obj: ioctl.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-ioctl.obj `if test -f 'ioctl.c'; then $(CYGPATH_W) 'ioctl.c'; else $(CYGPATH_W) '$(srcdir)/ioctl.c'; fi`
 install-toollibDATA: $(toollib_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(toollib_DATA)'; test -n "$(toollibdir)" || list=; \
