@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <unistd.h>
 
+
 int setpgid(pid_t pid, pid_t pgid)
 {
     int ret;
@@ -17,6 +18,11 @@ int setpgid(pid_t pid, pid_t pgid)
     }
 
     return 0;
+}
+
+int setpgrp(pid_t pid, pid_t pgid)
+{
+    return setpgid(pid, pgid);
 }
 
 pid_t getpgrp(void)

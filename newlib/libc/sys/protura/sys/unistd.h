@@ -71,6 +71,7 @@ ssize_t _EXFUN(readlink, (const char *__path, char *__buf, size_t __bufsize));
 int _EXFUN(symlink, (const char *__target, const char *__linkpath));
 
 int _EXFUN(setpgid, (pid_t __pid, pid_t __pgid));
+int _EXFUN(setpgrp, (pid_t pid, pid_t pgid));
 pid_t _EXFUN(getpgrp, (void));
 
 #define SEEK_SET 0
