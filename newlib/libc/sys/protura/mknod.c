@@ -17,3 +17,8 @@ int mknod(const char *file, mode_t mode, dev_t dev)
     return ret;
 }
 
+int mkfifo(const char *fifo, mode_t mode)
+{
+    return mknod(fifo, mode, 0);
+}
+
