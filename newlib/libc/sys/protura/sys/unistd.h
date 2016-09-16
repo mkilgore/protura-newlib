@@ -74,6 +74,18 @@ int _EXFUN(setpgid, (pid_t __pid, pid_t __pgid));
 int _EXFUN(setpgrp, (pid_t pid, pid_t pgid));
 pid_t _EXFUN(getpgrp, (void));
 
+/* Definitions for newlib */
+int _EXFUN(_close, (int __fildes));
+pid_t _EXFUN(_fork, (void));
+pid_t _EXFUN(_getpid, (void));
+int _EXFUN(_link, (const char *__path1, const char *__path2));
+off_t _EXFUN(_lseek, (int __fildes, off_t __offset, int __whence));
+_READ_WRITE_RETURN_TYPE _EXFUN(_read, (int __fd, void *__buf, size_t __nbyte));
+_READ_WRITE_RETURN_TYPE _EXFUN(_write, (int __fd, const void *__buf, size_t __nbyte));
+void *_EXFUN(_sbrk, (ptrdiff_t __incr));
+int _EXFUN(_unlink, (const char *__path));
+int _EXFUN(_execve, (const char *__path, char *const __argv[], char *const __envp[]));
+
 #define SEEK_SET 0
 #define SEEK_CUR 1
 #define SEEK_END 2
