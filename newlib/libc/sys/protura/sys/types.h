@@ -48,8 +48,26 @@ typedef struct
 
 typedef int clockid_t;
 
-#include <protura/fs/fdset.h>
-#define _SYS_TYPES_FD_SET
+#ifndef _SYS_TYPES_FD_SET
+
+# include <protura/fs/fdset.h>
+
+# define NOFILE __kNOFILE
+# define FD_SETSIZE __kFD_SETSIZE
+
+typedef __kfd_set fd_set;
+typedef __kfd_mask fd_mask;
+
+# define NBBY __kNBBY
+# define FDBITS __kFDBITS
+
+# define FD_CLR(fd, set) __kFD_CLR(fd, set)
+# define FD_SET(fd, set) __kFD_SET(fd, set)
+# define FD_ISSET(fd, set) __kFD_ISSET(fd, set)
+# define FD_ZERO(set) __kFD_ZERO(set)
+
+# define _SYS_TYPES_FD_SET
+#endif
 
 #include <protura/types.h>
 #define __mode_t_defined
