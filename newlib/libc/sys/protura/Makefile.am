@@ -48,7 +48,8 @@ extra_sources = \
 	mount.c \
 	pgrp.c \
 	ioctl.c \
-	poll.c
+	poll.c \
+	termios.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)

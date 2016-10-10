@@ -35,3 +35,31 @@ pid_t getpgrp(void)
     return pgid;
 }
 
+pid_t setsid(void)
+{
+    int ret;
+
+    ret = syscall0(SYSCALL_SETSID);
+
+    if (ret < 0) {
+        errno = -ret;
+        return -1;
+    }
+
+    return ret;
+}
+
+pid_t getsid(pid_t pid)
+{
+    pid_t ret;
+
+    ret = syscall1(SYSCALL_GETSID, pid);
+
+    if (ret < 0) {
+        errno = -ret;
+        return -1;
+    }
+
+    return ret;
+}
+

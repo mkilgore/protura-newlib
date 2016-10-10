@@ -74,6 +74,9 @@ int _EXFUN(setpgid, (pid_t __pid, pid_t __pgid));
 int _EXFUN(setpgrp, (pid_t pid, pid_t pgid));
 pid_t _EXFUN(getpgrp, (void));
 
+pid_t _EXFUN(setsid, (void));
+pid_t _EXFUN(getsid, (pid_t __pid));
+
 /* Definitions for newlib */
 int _EXFUN(_close, (int __fildes));
 pid_t _EXFUN(_fork, (void));
