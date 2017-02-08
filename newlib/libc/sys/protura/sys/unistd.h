@@ -77,6 +77,9 @@ pid_t _EXFUN(getpgrp, (void));
 pid_t _EXFUN(setsid, (void));
 pid_t _EXFUN(getsid, (pid_t __pid));
 
+char *_EXFUN(ttyname, (int __fd));
+int   _EXFUN(ttyname_r, (int __fd, char *__buf, size_t __buflen));
+
 /* Definitions for newlib */
 int _EXFUN(_close, (int __fildes));
 pid_t _EXFUN(_fork, (void));
