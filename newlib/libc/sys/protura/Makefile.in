@@ -88,7 +88,8 @@ am__objects_1 = lib_a-read.$(OBJEXT) lib_a-write.$(OBJEXT) \
 	lib_a-signal.$(OBJEXT) lib_a-symlink.$(OBJEXT) \
 	lib_a-mount.$(OBJEXT) lib_a-pgrp.$(OBJEXT) \
 	lib_a-ioctl.$(OBJEXT) lib_a-poll.$(OBJEXT) \
-	lib_a-termios.$(OBJEXT)
+	lib_a-termios.$(OBJEXT) lib_a-socket.$(OBJEXT) \
+	lib_a-arpa_inet.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -286,7 +287,9 @@ extra_sources = \
 	pgrp.c \
 	ioctl.c \
 	poll.c \
-	termios.c
+	termios.c \
+	socket.c \
+	arpa_inet.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
@@ -596,6 +599,18 @@ lib_a-termios.o: termios.c
 
 lib_a-termios.obj: termios.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-termios.obj `if test -f 'termios.c'; then $(CYGPATH_W) 'termios.c'; else $(CYGPATH_W) '$(srcdir)/termios.c'; fi`
+
+lib_a-socket.o: socket.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-socket.o `test -f 'socket.c' || echo '$(srcdir)/'`socket.c
+
+lib_a-socket.obj: socket.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-socket.obj `if test -f 'socket.c'; then $(CYGPATH_W) 'socket.c'; else $(CYGPATH_W) '$(srcdir)/socket.c'; fi`
+
+lib_a-arpa_inet.o: arpa_inet.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-arpa_inet.o `test -f 'arpa_inet.c' || echo '$(srcdir)/'`arpa_inet.c
+
+lib_a-arpa_inet.obj: arpa_inet.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-arpa_inet.obj `if test -f 'arpa_inet.c'; then $(CYGPATH_W) 'arpa_inet.c'; else $(CYGPATH_W) '$(srcdir)/arpa_inet.c'; fi`
 install-toollibDATA: $(toollib_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(toollib_DATA)'; test -n "$(toollibdir)" || list=; \
@@ -752,7 +767,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-toollibDATA
+install-data-am: install-data-local install-toollibDATA
 
 install-dvi: install-dvi-am
 
@@ -806,17 +821,28 @@ uninstall-am: uninstall-toollibDATA
 	clean clean-cscope clean-generic clean-noinstLIBRARIES cscope \
 	cscopelist ctags distclean distclean-compile distclean-generic \
 	distclean-tags dvi dvi-am html html-am info info-am install \
-	install-am install-data install-data-am install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip install-toollibDATA installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic pdf pdf-am \
-	ps ps-am tags uninstall uninstall-am uninstall-toollibDATA
+	install-am install-data install-data-am install-data-local \
+	install-dvi install-dvi-am install-exec install-exec-am \
+	install-html install-html-am install-info install-info-am \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip install-toollibDATA installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-toollibDATA
 
 
 all-local: crt0.o crtn.o crti.o
+
+install-data-local:
+	$(mkinstalldirs) $(DESTDIR)$(tooldir)/include/arpa; \
+	for i in $(srcdir)/include/arpa/*.h; do \
+	  $(INSTALL_DATA) $$i $(DESTDIR)$(tooldir)/include/arpa/`basename $$i`; \
+	done; \
+	$(mkinstalldirs) $(DESTDIR)$(tooldir)/include/netinet; \
+	for i in $(srcdir)/include/netinet/*.h; do \
+	  $(INSTALL_DATA) $$i $(DESTDIR)$(tooldir)/include/netinet/`basename $$i`; \
+	done;
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

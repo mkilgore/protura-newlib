@@ -49,7 +49,9 @@ extra_sources = \
 	pgrp.c \
 	ioctl.c \
 	poll.c \
-	termios.c
+	termios.c \
+	socket.c \
+	arpa_inet.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
@@ -65,4 +67,14 @@ all-local: crt0.o crtn.o crti.o
 
 ACLOCAL_AMFLAGS = -I ../../.. -I ../../../..
 CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host
+
+install-data-local:
+	$(mkinstalldirs) $(DESTDIR)$(tooldir)/include/arpa; \
+	for i in $(srcdir)/include/arpa/*.h; do \
+	  $(INSTALL_DATA) $$i $(DESTDIR)$(tooldir)/include/arpa/`basename $$i`; \
+	done; \
+	$(mkinstalldirs) $(DESTDIR)$(tooldir)/include/netinet; \
+	for i in $(srcdir)/include/netinet/*.h; do \
+	  $(INSTALL_DATA) $$i $(DESTDIR)$(tooldir)/include/netinet/`basename $$i`; \
+	done;
 

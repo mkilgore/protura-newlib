@@ -20,4 +20,7 @@ typedef __kuint32_t uint32_t;
 typedef __kint64_t int64_t;
 typedef __kuint64_t uint64_t;
 
+typedef __kintptr_t intptr_t;
+typedef __kuintptr_t uintptr_t;
+
 #endif
