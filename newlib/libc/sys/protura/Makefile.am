@@ -4,6 +4,9 @@ AUTOMAKE_OPTIONS = cygnus
 INCLUDES = -I$(srcdir)/include $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS)
 AM_CCASFLAGS = $(INCLUDES)
 
+SUBDIRS = machine \
+		  .
+
 noinst_LIBRARIES = lib.a
 
 toollibdir = $(tooldir)/lib$(MULTISUBDIR)
@@ -64,6 +67,12 @@ lib_a_CFLAGS = $(AM_CFLAGS)
 SUFFIXES = .S
 
 all-local: crt0.o crtn.o crti.o
+
+crt0.o: machine/crt0.o
+	rm -f $@
+	ln machine/crt0.o $@ >/dev/null 2>/dev/null || cp machine/crt0.o $@
+
+machine/crt0.o: ; @true
 
 ACLOCAL_AMFLAGS = -I ../../.. -I ../../../..
 CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host
