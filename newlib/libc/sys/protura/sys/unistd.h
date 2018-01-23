@@ -80,10 +80,12 @@ pid_t _EXFUN(getsid, (pid_t __pid));
 char *_EXFUN(ttyname, (int __fd));
 int   _EXFUN(ttyname_r, (int __fd, char *__buf, size_t __buflen));
 
+#ifdef _COMPILING_NEWLIB
 /* Definitions for newlib */
 int _EXFUN(_close, (int __fildes));
 pid_t _EXFUN(_fork, (void));
 pid_t _EXFUN(_getpid, (void));
+int _EXFUN(_isatty, (int __fildes));
 int _EXFUN(_link, (const char *__path1, const char *__path2));
 off_t _EXFUN(_lseek, (int __fildes, off_t __offset, int __whence));
 _READ_WRITE_RETURN_TYPE _EXFUN(_read, (int __fd, void *__buf, size_t __nbyte));
@@ -91,6 +93,7 @@ _READ_WRITE_RETURN_TYPE _EXFUN(_write, (int __fd, const void *__buf, size_t __nb
 void *_EXFUN(_sbrk, (ptrdiff_t __incr));
 int _EXFUN(_unlink, (const char *__path));
 int _EXFUN(_execve, (const char *__path, char *const __argv[], char *const __envp[]));
+#endif
 
 #define SEEK_SET 0
 #define SEEK_CUR 1

@@ -12,11 +12,8 @@ NEWLIB_CONFIGURE(../../../..)
 
 if test -n "${machine_dir}"; then
   case ${machine_dir} in
-	i386) AC_CONFIG_SUBDIRS(i386) ;;
-
-  case ${machine_dir} in
-    arm)  AC_CONFIG_SUBDIRS(arm) ;;
-
+	i386) AC_CONFIG_SUBDIRS([i386]) ;;
+    arm)  AC_CONFIG_SUBDIRS([arm]) ;;
   esac;
 fi
 

@@ -2,10 +2,11 @@
 #include "syscall.h"
 #include <sys/errno.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <stdint.h>
 #include <unistd.h>
 
-int _stat(char *file, struct stat *st)
+int _stat(const char *file, struct stat *st)
 {
     int ret;
 
@@ -19,7 +20,7 @@ int _stat(char *file, struct stat *st)
     return 0;
 }
 
-int lstat(char *file, struct stat *st)
+int lstat(const char *file, struct stat *st)
 {
     int ret;
 

@@ -1,7 +1,7 @@
 
 AUTOMAKE_OPTIONS = cygnus
 
-INCLUDES = -I$(srcdir)/include $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS)
+INCLUDES = -I$(srcdir)/include -I$(srcdir)/machine/$(machine_dir) $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS)
 AM_CCASFLAGS = $(INCLUDES)
 
 SUBDIRS = machine \
@@ -9,8 +9,8 @@ SUBDIRS = machine \
 
 noinst_LIBRARIES = lib.a
 
-toollibdir = $(tooldir)/lib$(MULTISUBDIR)
-toollib_DATA = crtn.o crti.o
+# toollibdir = $(tooldir)/lib$(MULTISUBDIR)
+# toollib_DATA = crtn.o crti.o
 
 extra_sources = \
 	read.c \
@@ -66,16 +66,13 @@ lib_a_CFLAGS = $(AM_CFLAGS)
 # There is probably a better way to do this but this gets us what we want.
 SUFFIXES = .S
 
-all-local: crt0.o crtn.o crti.o
+all-local: crt0.o
 
 crt0.o: machine/crt0.o
 	rm -f $@
 	ln machine/crt0.o $@ >/dev/null 2>/dev/null || cp machine/crt0.o $@
 
 machine/crt0.o: ; @true
-
-ACLOCAL_AMFLAGS = -I ../../.. -I ../../../..
-CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(tooldir)/include/arpa; \
@@ -87,3 +84,5 @@ install-data-local:
 	  $(INSTALL_DATA) $$i $(DESTDIR)$(tooldir)/include/netinet/`basename $$i`; \
 	done;
 
+ACLOCAL_AMFLAGS = -I ../../.. -I ../../../..
+CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host

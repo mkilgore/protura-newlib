@@ -22,6 +22,8 @@ struct dirent {
     char d_name[];
 };
 
+#define __dirfd(dir) (dir)->dd_fd
+
 #undef HAVE_NO_D_NAMLEN
 #undef HAVE_DD_LOCK
 

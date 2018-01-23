@@ -24,8 +24,9 @@ time_t time(time_t *t)
     return tim;
 }
 
-int _gettimeofday(struct timeval *tv, struct timezone *tz)
+int _gettimeofday(struct timeval *tv, void *vtz)
 {
+    struct timezone *tz = vtz;
     time_t t = time(NULL);
 
     if (t == (time_t)-1)

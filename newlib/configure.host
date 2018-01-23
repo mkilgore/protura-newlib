@@ -572,6 +572,7 @@ case "${host}" in
 	newlib_cflags="${newlib_cflags} -DSIGNAL_PROVIDED"
 	newlib_cflags="${newlib_cflags} -D_I386MACH_ALLOW_HW_INTERRUPTS"
 	newlib_cflags="${newlib_cflags} -DHAVE_FCNTL"
+	newlib_cflags="${newlib_cflags} -D_COMPILING_NEWLIB"
 	;;
 esac
 
