@@ -3,6 +3,6 @@
 
 #include <sys/types.h>
 #include <protura/net/sockaddr.h>
-#include <protura/net/af/ipv4.h>
+#include <protura/net/ipv4/ipv4.h>
 
 #endif
