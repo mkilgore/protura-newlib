@@ -36,6 +36,10 @@ void _EXFUN(sync, (void));
 pid_t _EXFUN(getpid, (void));
 pid_t _EXFUN(getppid, (void));
 
+uid_t _EXFUN(getuid, (void));
+gid_t _EXFUN(getguid, (void));
+
+int _EXFUN(gethostname, (char *name, size_t len));
 int _EXFUN(isatty, (int __fildes));
 
 int _EXFUN(link, (const char *__path1, const char *__path2));
@@ -79,6 +83,9 @@ pid_t _EXFUN(getsid, (pid_t __pid));
 
 char *_EXFUN(ttyname, (int __fd));
 int   _EXFUN(ttyname_r, (int __fd, char *__buf, size_t __buflen));
+
+int _EXFUN(access, (const char *__path, int __mode));
+int _EXFUN(chown, (const char *pathname, uid_t owner, gid_t group));
 
 #ifdef _COMPILING_NEWLIB
 /* Definitions for newlib */

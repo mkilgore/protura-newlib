@@ -11,6 +11,8 @@ int _EXFUN(lstat, (const char *__path, struct stat *__buf));
 int _EXFUN(mkdir, (const char *path, mode_t mode));
 int _EXFUN(mknod, (const char *path, mode_t mode, dev_t dev));
 int _EXFUN(mkfifo, (const char *path, mode_t mode));
+mode_t _EXFUN(umask, (mode_t mode));
+int _EXFUN(chmod, (const char *path, mode_t mode));
 
 #ifdef _COMPILING_NEWLIB
 int _EXFUN(_fstat, (int __fd, struct stat *__buf));

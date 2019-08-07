@@ -34,3 +34,19 @@ int lstat(const char *file, struct stat *st)
     return 0;
 }
 
+int access(const char *path, int mode)
+{
+    struct stat st;
+
+    return _stat(path, &st);
+}
+
+int chmod(const char *path, mode_t mode)
+{
+    return 0;
+}
+
+int gethostname(char *name, size_t len)
+{
+    strncpy(name, "Laptop", len);
+}
