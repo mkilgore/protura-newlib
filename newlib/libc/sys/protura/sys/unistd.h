@@ -37,7 +37,21 @@ pid_t _EXFUN(getpid, (void));
 pid_t _EXFUN(getppid, (void));
 
 uid_t _EXFUN(getuid, (void));
-gid_t _EXFUN(getguid, (void));
+uid_t _EXFUN(geteuid, (void));
+int _EXFUN(setuid, (uid_t __uid ));
+int _EXFUN(seteuid, (uid_t __uid ));
+int _EXFUN(setreuid, (uid_t __ruid, uid_t __euid));
+int _EXFUN(setresuid, (uid_t __ruid, uid_t __euid, uid_t __suid));
+
+gid_t _EXFUN(getgid, (void));
+gid_t _EXFUN(getegid, (void));
+int _EXFUN(setgid, (gid_t __gid ));
+int _EXFUN(setegid, (gid_t __gid ));
+int _EXFUN(setregid, (gid_t __rgid, gid_t __egid));
+int _EXFUN(setresgid, (gid_t __rgid, gid_t __egid, gid_t __sgid));
+
+int _EXFUN(setgroups, (int ngroups, const gid_t *grouplist ));
+int _EXFUN(getgroups, (int __gidsetsize, gid_t __grouplist[] ));
 
 int _EXFUN(gethostname, (char *name, size_t len));
 int _EXFUN(isatty, (int __fildes));
