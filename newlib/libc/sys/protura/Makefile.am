@@ -56,7 +56,8 @@ extra_sources = \
 	socket.c \
 	arpa_inet.c \
 	cfspeed.c \
-	umask.c
+	umask.c \
+	user.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)

@@ -89,7 +89,7 @@ am__objects_1 = lib_a-read.$(OBJEXT) lib_a-write.$(OBJEXT) \
 	lib_a-ioctl.$(OBJEXT) lib_a-poll.$(OBJEXT) \
 	lib_a-termios.$(OBJEXT) lib_a-socket.$(OBJEXT) \
 	lib_a-arpa_inet.$(OBJEXT) lib_a-cfspeed.$(OBJEXT) \
-	lib_a-umask.$(OBJEXT)
+	lib_a-umask.$(OBJEXT) lib_a-user.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -279,7 +279,8 @@ extra_sources = \
 	socket.c \
 	arpa_inet.c \
 	cfspeed.c \
-	umask.c
+	umask.c \
+	user.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
@@ -613,6 +614,12 @@ lib_a-umask.o: umask.c
 
 lib_a-umask.obj: umask.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-umask.obj `if test -f 'umask.c'; then $(CYGPATH_W) 'umask.c'; else $(CYGPATH_W) '$(srcdir)/umask.c'; fi`
+
+lib_a-user.o: user.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-user.o `test -f 'user.c' || echo '$(srcdir)/'`user.c
+
+lib_a-user.obj: user.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-user.obj `if test -f 'user.c'; then $(CYGPATH_W) 'user.c'; else $(CYGPATH_W) '$(srcdir)/user.c'; fi`
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run 'make' without going through this Makefile.

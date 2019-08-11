@@ -7,11 +7,6 @@
 #include <unistd.h>
 #include <utime.h>
 
-mode_t umask(mode_t new_mode)
-{
-    return 0;
-}
-
 uid_t getuid(void)
 {
     return syscall0(SYSCALL_GETUID);
@@ -72,14 +67,12 @@ int setresgid(gid_t rgid, gid_t egid, gid_t sgid)
     return syscall3(SYSCALL_SETRESGID, (int)rgid, (int)egid, (int)sgid);
 }
 
-int chown(const char *pathname, uid_t owner, gid_t group)
+int setgroups(int ngroups, const gid_t *grouplist)
 {
-    return 0;
+    return syscall2(SYSCALL_SETGROUPS, ngroups, (int)grouplist);
 }
 
-int utime(const char *filename, const struct utimbuf *times)
+int getgroups(int gidsetsize, gid_t *grouplist)
 {
-    return 0;
+    return syscall2(SYSCALL_GETGROUPS, gidsetsize, (int)grouplist);
 }
-
-

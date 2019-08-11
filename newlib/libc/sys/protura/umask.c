@@ -12,16 +12,6 @@ mode_t umask(mode_t new_mode)
     return 0;
 }
 
-uid_t getuid(void)
-{
-    return 0;
-}
-
-gid_t getgid(void)
-{
-    return 0;
-}
-
 int chown(const char *pathname, uid_t owner, gid_t group)
 {
     return 0;
