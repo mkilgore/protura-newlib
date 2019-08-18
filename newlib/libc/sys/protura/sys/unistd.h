@@ -101,6 +101,8 @@ int   _EXFUN(ttyname_r, (int __fd, char *__buf, size_t __buflen));
 int _EXFUN(access, (const char *__path, int __mode));
 int _EXFUN(chown, (const char *pathname, uid_t owner, gid_t group));
 
+char *_EXFUN(getcwd, (char *__buf, size_t __len));
+
 #ifdef _COMPILING_NEWLIB
 /* Definitions for newlib */
 int _EXFUN(_close, (int __fildes));
