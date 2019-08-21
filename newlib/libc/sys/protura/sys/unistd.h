@@ -103,6 +103,8 @@ int _EXFUN(chown, (const char *pathname, uid_t owner, gid_t group));
 
 char *_EXFUN(getcwd, (char *__buf, size_t __len));
 
+long _EXFUN(pathconf, (const char *__path, int __name ));
+
 #ifdef _COMPILING_NEWLIB
 /* Definitions for newlib */
 int _EXFUN(_close, (int __fildes));
@@ -130,6 +132,28 @@ int _EXFUN(_execve, (const char *__path, char *const __argv[], char *const __env
 #define STDIN_FILENO 0
 #define STDOUT_FILENO 1
 #define STDERR_FILENO 2
+
+#define _PC_LINK_MAX                      0
+#define _PC_MAX_CANON                     1
+#define _PC_MAX_INPUT                     2
+#define _PC_NAME_MAX                      3
+#define _PC_PATH_MAX                      4
+#define _PC_PIPE_BUF                      5
+#define _PC_CHOWN_RESTRICTED              6
+#define _PC_NO_TRUNC                      7
+#define _PC_VDISABLE                      8
+#define _PC_ASYNC_IO                      9
+#define _PC_PRIO_IO                      10
+#define _PC_SYNC_IO                      11
+#define _PC_FILESIZEBITS                 12
+#define _PC_2_SYMLINKS                   13
+#define _PC_SYMLINK_MAX                  14
+#define _PC_ALLOC_SIZE_MIN               15
+#define _PC_REC_INCR_XFER_SIZE           16
+#define _PC_REC_MAX_XFER_SIZE            17
+#define _PC_REC_MIN_XFER_SIZE            18
+#define _PC_REC_XFER_ALIGN               19
+#define _PC_TIMESTAMP_RESOLUTION         20
 
 #ifdef __cplusplus
 }
