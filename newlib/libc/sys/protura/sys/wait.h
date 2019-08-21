@@ -1,6 +1,10 @@
 #ifndef _SYS_WAIT_H
 #define _SYS_WAIT_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <protura/waitbits.h>
 
 #define WNOHANG      __kWNOHANG
@@ -26,5 +30,8 @@ pid_t waitpid (pid_t, int *, int);
 
 pid_t _wait (int *);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif

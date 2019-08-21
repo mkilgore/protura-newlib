@@ -2,9 +2,10 @@
 #define _SIGNAL_H_
 
 #include "_ansi.h"
-#include <sys/signal.h>
 
 _BEGIN_STD_C
+
+#include <sys/signal.h>
 
 typedef int	sig_atomic_t;		/* Atomic entity type (ANSI) */
 #ifndef _POSIX_SOURCE
