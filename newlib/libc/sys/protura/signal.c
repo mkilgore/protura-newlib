@@ -108,3 +108,7 @@ int sleep(int seconds)
     return ret;
 }
 
+unsigned int alarm(unsigned int __seconds)
+{
+    return 0;
+}

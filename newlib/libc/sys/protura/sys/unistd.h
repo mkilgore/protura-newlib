@@ -105,6 +105,8 @@ char *_EXFUN(getcwd, (char *__buf, size_t __len));
 
 long _EXFUN(pathconf, (const char *__path, int __name ));
 
+unsigned int _EXFUN(alarm, (unsigned int __seconds));
+
 #ifdef _COMPILING_NEWLIB
 /* Definitions for newlib */
 int _EXFUN(_close, (int __fildes));
