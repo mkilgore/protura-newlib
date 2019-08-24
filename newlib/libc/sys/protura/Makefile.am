@@ -58,7 +58,8 @@ extra_sources = \
 	cfspeed.c \
 	umask.c \
 	user.c \
-	pathconf.c
+	pathconf.c \
+	stack_check.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
