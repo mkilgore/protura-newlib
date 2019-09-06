@@ -9,13 +9,14 @@
 static inline int syscall6(int sys, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6)
 {
     int out;
-    asm volatile(
-                "push %%ebp\n"
-                "mov %[arg6], %%ebp\n"
-                "int $" Q(INT_SYSCALL) "\n"
-                "pop %%ebp\n"
+    int ebp_save;
+
+    asm volatile("mov %%ebp, %[ebp_save]\n"
+                 "mov %[arg6], %%ebp\n"
+                 "int $" Q(INT_SYSCALL) "\n"
+                 "mov %[ebp_save], %%ebp\n"
                  : "=a" (out)
-                 : "0" (sys), "b" (arg1), "c" (arg2), "d" (arg3), "S" (arg4), "D" (arg5), [arg6] "g" (arg6)
+                 : "0" (sys), "b" (arg1), "c" (arg2), "d" (arg3), "S" (arg4), "D" (arg5), [arg6] "g" (arg6), [ebp_save] "m" (ebp_save)
                  : "memory");
 
     return out;
