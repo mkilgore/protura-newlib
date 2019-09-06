@@ -21,6 +21,10 @@ ssize_t recvfrom(int __sockfd, void * __buf, size_t __buflen, int __flags, struc
 ssize_t send  (int __sockfd, const void *__buf, size_t __buflen, int __flags);
 ssize_t sendto(int __sockfd, const void *__buf, size_t __buflen, int __flags, const struct sockaddr *__addr, socklen_t __addrlen);
 
+int accept(int __sockfd, struct sockaddr *__addr, socklen_t *__addrlen);
+int listen(int __sockfd, int __backlog);
+int connect(int __sockfd, const struct sockaddr *__addr, socklen_t __addrlen);
+
 int shutdown(int __sockfd, int __how);
 
 #endif

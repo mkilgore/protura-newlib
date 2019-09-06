@@ -71,7 +71,7 @@ int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t
     return ret;
 }
 
-ssize_t recv(int sockfd, void * buf, size_t buflen, int flags)
+ssize_t recv(int sockfd, void *buf, size_t buflen, int flags)
 {
     int ret;
     ret = syscall4(SYSCALL_RECV, sockfd, (uint32_t)buf, (uint32_t)buflen, flags);
@@ -83,7 +83,7 @@ ssize_t recv(int sockfd, void * buf, size_t buflen, int flags)
     return ret;
 }
 
-ssize_t recvfrom(int sockfd, void * buf, size_t buflen, int flags, struct sockaddr *addr, socklen_t *addrlen)
+ssize_t recvfrom(int sockfd, void *buf, size_t buflen, int flags, struct sockaddr *addr, socklen_t *addrlen)
 {
     int ret;
     ret = syscall6(SYSCALL_RECVFROM, sockfd, (uint32_t)buf, (uint32_t)buflen, flags, (uint32_t)addr, (uint32_t)addrlen);
@@ -111,6 +111,42 @@ ssize_t sendto(int sockfd, const void *buf, size_t buflen, int flags, const stru
 {
     int ret;
     ret = syscall6(SYSCALL_SENDTO, sockfd, (uint32_t)buf, (uint32_t)buflen, flags, (uint32_t)addr, (uint32_t)addrlen);
+    if (ret < 0) {
+        errno = -ret;
+        return -1;
+    }
+
+    return ret;
+}
+
+int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
+{
+    int ret;
+    ret = syscall3(SYSCALL_ACCEPT, sockfd, (uint32_t)addr, (uint32_t)addrlen);
+    if (ret < 0) {
+        errno = -ret;
+        return -1;
+    }
+
+    return ret;
+}
+
+int listen(int sockfd, int backlog)
+{
+    int ret;
+    ret = syscall2(SYSCALL_LISTEN, sockfd, backlog);
+    if (ret < 0) {
+        errno = -ret;
+        return -1;
+    }
+
+    return ret;
+}
+
+int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
+{
+    int ret;
+    ret = syscall3(SYSCALL_CONNECT, sockfd, (uint32_t)addr, (uint32_t)addrlen);
     if (ret < 0) {
         errno = -ret;
         return -1;
