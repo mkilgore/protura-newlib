@@ -91,7 +91,7 @@ am__objects_1 = lib_a-read.$(OBJEXT) lib_a-write.$(OBJEXT) \
 	lib_a-arpa_inet.$(OBJEXT) lib_a-cfspeed.$(OBJEXT) \
 	lib_a-umask.$(OBJEXT) lib_a-user.$(OBJEXT) \
 	lib_a-pathconf.$(OBJEXT) lib_a-stack_check.$(OBJEXT) \
-	lib_a-uname.$(OBJEXT)
+	lib_a-uname.$(OBJEXT) lib_a-reboot.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -285,7 +285,8 @@ extra_sources = \
 	user.c \
 	pathconf.c \
 	stack_check.c \
-	uname.c
+	uname.c \
+	reboot.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
@@ -643,6 +644,12 @@ lib_a-uname.o: uname.c
 
 lib_a-uname.obj: uname.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-uname.obj `if test -f 'uname.c'; then $(CYGPATH_W) 'uname.c'; else $(CYGPATH_W) '$(srcdir)/uname.c'; fi`
+
+lib_a-reboot.o: reboot.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-reboot.o `test -f 'reboot.c' || echo '$(srcdir)/'`reboot.c
+
+lib_a-reboot.obj: reboot.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-reboot.obj `if test -f 'reboot.c'; then $(CYGPATH_W) 'reboot.c'; else $(CYGPATH_W) '$(srcdir)/reboot.c'; fi`
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run 'make' without going through this Makefile.
