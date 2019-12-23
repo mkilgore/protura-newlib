@@ -23,6 +23,4 @@
 #endif
 #endif
 
-#define getline __getline
-
 #endif

@@ -492,8 +492,11 @@ int	_EXFUN(_vsscanf_r, (struct _reent *, const char *__restrict, const char *__r
 /* Other extensions.  */
 
 int	_EXFUN(fpurge, (FILE *));
-ssize_t _EXFUN(__getdelim, (char **, size_t *, int, FILE *));
-ssize_t _EXFUN(__getline, (char **, size_t *, FILE *));
+
+#if __GNU_VISIBLE
+ssize_t _EXFUN(getdelim, (char **, size_t *, int, FILE *));
+ssize_t _EXFUN(getline, (char **, size_t *, FILE *));
+#endif
 
 #if __BSD_VISIBLE
 void	_EXFUN(clearerr_unlocked, (FILE *));
