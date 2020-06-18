@@ -36,17 +36,20 @@ int lstat(const char *file, struct stat *st)
 
 int access(const char *path, int mode)
 {
-    struct stat st;
+    int ret;
 
-    return _stat(path, &st);
-}
+    ret = syscall2(SYSCALL_ACCESS, (int)path, mode);
 
-int chmod(const char *path, mode_t mode)
-{
+    if (ret < 0) {
+        errno = -ret;
+        return -1;
+    }
+
     return 0;
 }
 
 int gethostname(char *name, size_t len)
 {
     strncpy(name, "Laptop", len);
+    return 0;
 }
