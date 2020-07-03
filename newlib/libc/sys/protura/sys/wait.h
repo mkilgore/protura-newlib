@@ -1,6 +1,8 @@
 #ifndef _SYS_WAIT_H
 #define _SYS_WAIT_H
 
+#include <sys/features.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif

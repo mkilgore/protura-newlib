@@ -91,7 +91,8 @@ am__objects_1 = lib_a-read.$(OBJEXT) lib_a-write.$(OBJEXT) \
 	lib_a-arpa_inet.$(OBJEXT) lib_a-cfspeed.$(OBJEXT) \
 	lib_a-umask.$(OBJEXT) lib_a-user.$(OBJEXT) \
 	lib_a-pathconf.$(OBJEXT) lib_a-stack_check.$(OBJEXT) \
-	lib_a-uname.$(OBJEXT) lib_a-reboot.$(OBJEXT)
+	lib_a-uname.$(OBJEXT) lib_a-reboot.$(OBJEXT) \
+	lib_a-grp.$(OBJEXT)
 am_lib_a_OBJECTS = $(am__objects_1)
 lib_a_OBJECTS = $(am_lib_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -286,7 +287,8 @@ extra_sources = \
 	pathconf.c \
 	stack_check.c \
 	uname.c \
-	reboot.c
+	reboot.c \
+	grp.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)
@@ -650,6 +652,12 @@ lib_a-reboot.o: reboot.c
 
 lib_a-reboot.obj: reboot.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-reboot.obj `if test -f 'reboot.c'; then $(CYGPATH_W) 'reboot.c'; else $(CYGPATH_W) '$(srcdir)/reboot.c'; fi`
+
+lib_a-grp.o: grp.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-grp.o `test -f 'grp.c' || echo '$(srcdir)/'`grp.c
+
+lib_a-grp.obj: grp.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-grp.obj `if test -f 'grp.c'; then $(CYGPATH_W) 'grp.c'; else $(CYGPATH_W) '$(srcdir)/grp.c'; fi`
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run 'make' without going through this Makefile.

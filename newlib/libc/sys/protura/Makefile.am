@@ -61,7 +61,8 @@ extra_sources = \
 	pathconf.c \
 	stack_check.c \
 	uname.c \
-	reboot.c
+	reboot.c \
+	grp.c
 
 lib_a_SOURCES = $(extra_sources)
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)

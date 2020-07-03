@@ -5,6 +5,11 @@
 extern "C" {
 #endif
 
+/* These are aproximate, we don't support it all, but some things we support
+ * check for these when compiling */
+#define _POSIX_VERSION	199009L
+#define _XOPEN_VERSION	600
+
 #include <_ansi.h>
 #define __need_size_t
 #define __need_ptrdiff_t
