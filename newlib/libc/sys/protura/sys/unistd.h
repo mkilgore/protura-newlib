@@ -114,6 +114,8 @@ long _EXFUN(pathconf, (const char *__path, int __name ));
 
 unsigned int _EXFUN(alarm, (unsigned int __seconds));
 
+int usleep(useconds_t);
+
 #ifdef _COMPILING_NEWLIB
 /* Definitions for newlib */
 int _EXFUN(_close, (int __fildes));

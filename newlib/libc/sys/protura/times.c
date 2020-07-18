@@ -11,4 +11,3 @@ int _times(struct tms *buf)
     errno = EACCES;
     return -1;
 }
-

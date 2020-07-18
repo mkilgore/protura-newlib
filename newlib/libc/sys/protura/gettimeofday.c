@@ -7,34 +7,41 @@
 #include <stdint.h>
 #include <unistd.h>
 
-time_t time(time_t *t)
-{
-    int ret;
-    time_t tim;
-
-    ret = syscall1(SYSCALL_TIME, (uint32_t)&tim);
-    if (ret) {
-        errno = -ret;
-        return (time_t)-1;
-    }
-
-    if (t)
-        *t = tim;
-
-    return tim;
-}
-
 int _gettimeofday(struct timeval *tv, void *vtz)
 {
     struct timezone *tz = vtz;
-    time_t t = time(NULL);
 
-    if (t == (time_t)-1)
+    int ret = syscall2(SYSCALL_GETTIMEOFDAY, tv, vtz);
+
+    if (ret < 0) {
+        errno = -ret;
         return -1;
-
-    tv->tv_sec = t;
-    tv->tv_usec = 0;
+    }
 
     return 0;
 }
 
+time_t time(time_t *t)
+{
+    int ret;
+    struct timeval tv;
+
+    ret = _gettimeofday(&tv, NULL);
+
+    if (ret < 0)
+        return -1;
+
+    return tv.tv_sec;
+}
+
+int usleep(useconds_t seconds)
+{
+    int ret = syscall1(SYSCALL_USLEEP, seconds);
+
+    if (ret < 0) {
+        errno = -ret;
+        return -1;
+    }
+
+    return 0;
+}
