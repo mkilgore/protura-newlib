@@ -86,7 +86,7 @@ typedef __kpid_t pid_t;
 typedef __ksuseconds_t suseconds_t;
 typedef __kuseconds_t useconds_t;
 
-typedef __kudev_t dev_t;
+typedef __kdev_t dev_t;
 typedef __kmode_t mode_t;
 typedef __kumode_t umode_t;
 typedef __kuid_t uid_t;

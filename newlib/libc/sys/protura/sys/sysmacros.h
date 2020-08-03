@@ -4,12 +4,12 @@
 #include <sys/types.h>
 
 #define makedev(maj, min) \
-    (((maj) << 8) | ((min) & 0xFF))
+    (((maj) << 20) | ((min) & 0xFFFFF))
 
 #define major(dev) \
-    ((dev) >> 8)
+    ((dev) >> 20)
 
 #define minor(dev) \
-    ((dev) & 0xFF)
+    ((dev) & 0xFFFFF)
 
 #endif
