@@ -3,6 +3,7 @@
 #include <sys/errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/vfs.h>
 #include <stdint.h>
 #include <unistd.h>
 
@@ -25,6 +26,34 @@ int lstat(const char *file, struct stat *st)
     int ret;
 
     ret = syscall2(SYSCALL_LSTAT, (int)file, (int)st);
+
+    if (ret < 0) {
+        errno = -ret;
+        return -1;
+    }
+
+    return 0;
+}
+
+int statvfs(const char *file, struct statvfs *st)
+{
+    int ret;
+
+    ret = syscall2(SYSCALL_STATVFS, (int)file, (int)st);
+
+    if (ret < 0) {
+        errno = -ret;
+        return -1;
+    }
+
+    return 0;
+}
+
+int fstatvfs(int fd, struct statvfs *st)
+{
+    int ret;
+
+    ret = syscall2(SYSCALL_FSTATVFS, (int)fd, (int)st);
 
     if (ret < 0) {
         errno = -ret;
